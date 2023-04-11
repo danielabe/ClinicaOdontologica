@@ -1,0 +1,559 @@
+{
+	"info": {
+		"_postman_id": "3d4f5c44-2a95-446b-8c62-803d19d7ce41",
+		"name": "BackendIII-ClinicaOdontologica",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "13361525"
+	},
+	"item": [
+		{
+			"name": "dentistas",
+			"item": [
+				{
+					"name": "dentista by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/dentistas/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"dentistas",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "dentista",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "TOKEN",
+								"value": "my-super-secret-token",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"apellido\": \"Lovegood\",\r\n    \"nombre\": \"Luna\",\r\n    \"matricula\": \"3456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/dentistas",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"dentistas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "dentista",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "TOKEN",
+								"value": "my-super-secret-token",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"apellido\": \"Lovegood\",\r\n    \"nombre\": \"Luna\",\r\n    \"matricula\": \"3456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/dentistas/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"dentistas",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "dentista",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "TOKEN",
+								"value": "my-super-secret-token",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"matricula\": \"123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/dentistas/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"dentistas",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "dentista",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "TOKEN",
+								"value": "my-super-secret-token",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/dentistas/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"dentistas",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "pacientes",
+			"item": [
+				{
+					"name": "paciente by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/pacientes/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"pacientes",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "paciente",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "TOKEN",
+								"value": "my-super-secret-token",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Ron\",\r\n    \"apellido\": \"Weasley\",\r\n    \"domicilio\": \"Paraguay 234\",\r\n    \"dni\": 34567890,\r\n    \"fecha_alta\": \"15-05-2020\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/pacientes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"pacientes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "paciente",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "TOKEN",
+								"value": "my-super-secret-token",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Daniela\",\r\n    \"apellido\": \"bera\",\r\n    \"domicilio\": \"sarm 31\",\r\n    \"dni\": 123,\r\n    \"fecha_alta\": \"31-12-2023\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/pacientes/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"pacientes",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "paciente",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "TOKEN",
+								"value": "my-super-secret-token",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"domicilio\": \"Paraguay 123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/pacientes/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"pacientes",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "paciente",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "TOKEN",
+								"value": "my-super-secret-token",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/pacientes/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"pacientes",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "turnos",
+			"item": [
+				{
+					"name": "turno by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/turnos/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"turnos",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "turno",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "TOKEN",
+								"value": "my-super-secret-token",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"paciente_id\": 2,\r\n    \"dentista_id\": 3,\r\n    \"fecha\": \"09-07-2023\",\r\n    \"hora\": \"11:00\",\r\n    \"descripcion\": \"Lorem ipsum\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/turnos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"turnos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "turno",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "TOKEN",
+								"value": "my-super-secret-token",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"paciente_id\": 2,\r\n    \"dentista_id\": 3,\r\n    \"fecha\": \"09-08-2023\",\r\n    \"hora\": \"11:00\",\r\n    \"descripcion\": \"Lorem ipsum\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/turnos/13",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"turnos",
+								"13"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "turno",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "TOKEN",
+								"value": "my-super-secret-token",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"hora\": \"15:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/turnos/13",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"turnos",
+								"13"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "turno",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "TOKEN",
+								"value": "my-super-secret-token",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/turnos/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"turnos",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "turno by dni and matricula",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "TOKEN",
+								"value": "my-super-secret-token",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"fecha\": \"01-01\",\r\n    \"hora\": \"12:00\",\r\n    \"descripcion\": \"asdf\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/turnos/dniymatricula?dni=1234567&matricula=123",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"turnos",
+								"dniymatricula"
+							],
+							"query": [
+								{
+									"key": "dni",
+									"value": "1234567"
+								},
+								{
+									"key": "matricula",
+									"value": "123"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "turnos by dni",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/turnos/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"turnos",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "health check",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/ping",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"ping"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

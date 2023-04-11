@@ -42,9 +42,9 @@ INSERT INTO dentistas VALUES
 (3,'Lovegood','Luna','3456');
 
 INSERT INTO pacientes VALUES 
-(1,'Hermione','Granger','Sarmiento 123',12345678,'31/12/2022'),
-(2,'Lord','Voldemort','Pasco 123',23456789,'13/10/2021'),
-(3,'Ron','Weasley','Paraguay 234',34567890,'15/05/2020');
+(1,'Hermione','Granger','Sarmiento 123',12345678,'31-12-2022'),
+(2,'Lord','Voldemort','Pasco 123',23456789,'13-10-2021'),
+(3,'Ron','Weasley','Paraguay 234',34567890,'15-05-2020');
 
 INSERT INTO turnos VALUES
 (1,1,1,'01-05-2023','12:00','Lorem ipsum'),
