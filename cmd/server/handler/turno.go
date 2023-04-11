@@ -23,6 +23,15 @@ func NewHandlerTurno(service turno.IService) *TurnoHandler {
 	}
 }
 
+// @Summary Get turno by id
+// @Description Get turno by id
+// @Tags Turnos
+// @Produce json
+// @Param id path int true "Turno ID"
+// @Success 200 {object} domain.Turno
+// @Failure 400 {object} web.errorResponse
+// @Failure 404 {object} web.errorResponse
+// @Router /turnos/{id} [get]
 func (h *TurnoHandler) GetById() gin.HandlerFunc {
 	return func(ctx *gin.Context) {
 		idParam := ctx.Param("id")
@@ -43,6 +52,16 @@ func (h *TurnoHandler) GetById() gin.HandlerFunc {
 	}
 }
 
+// @Summary Create turno
+// @Description Create a new turno in repository
+// @Tags Turnos
+// @Produce json
+// @Param token header string true "token"
+// @Param body body domain.TurnoWithIds true "TurnoWithIds"
+// @Success 201 {object} domain.TurnoWithIds
+// @Failure 400 {object} web.errorResponse
+// @Failure 404 {object} web.errorResponse
+// @Router /turnos [post]
 func (h *TurnoHandler) Post() gin.HandlerFunc {
 	return func(ctx *gin.Context) {
 		var turno domain.TurnoWithIds
@@ -62,6 +81,17 @@ func (h *TurnoHandler) Post() gin.HandlerFunc {
 	}
 }
 
+// @Summary Update turno
+// @Description Update turno in repository
+// @Tags Turnos
+// @Produce json
+// @Param id path int true "Turno ID"
+// @Param token header string true "token"
+// @Param body body domain.TurnoWithIds true "TurnoWithIds"
+// @Success 200 {object} domain.TurnoWithIds
+// @Failure 400 {object} web.errorResponse
+// @Failure 404 {object} web.errorResponse
+// @Router /turnos/{id} [put]
 func (h *TurnoHandler) Put() gin.HandlerFunc {
 	return func(ctx *gin.Context) {
 		idParam := ctx.Param("id")
@@ -87,6 +117,17 @@ func (h *TurnoHandler) Put() gin.HandlerFunc {
 	}
 }
 
+// @Summary Modify turno fields
+// @Description Modify turno fields in repository
+// @Tags Turnos
+// @Produce json
+// @Param id path int true "Turno ID"
+// @Param token header string true "token"
+// @Param body body domain.RequestTurno true "RequestTurno"
+// @Success 200 {object} domain.TurnoWithIds
+// @Failure 400 {object} web.errorResponse
+// @Failure 404 {object} web.errorResponse
+// @Router /turnos/{id} [patch]
 func (h *TurnoHandler) Patch() gin.HandlerFunc {
 	return func(ctx *gin.Context) {
 		var r domain.RequestTurno
@@ -117,6 +158,16 @@ func (h *TurnoHandler) Patch() gin.HandlerFunc {
 	}
 }
 
+// @Summary Delete turno
+// @Description Delete turno in repository
+// @Tags Turnos
+// @Produce json
+// @Param id path int true "Turno ID"
+// @Param token header string true "token"
+// @Success 204
+// @Failure 400 {object} web.errorResponse
+// @Failure 404 {object} web.errorResponse
+// @Router /turnos/{id} [delete]
 func (h *TurnoHandler) Delete() gin.HandlerFunc {
 	return func(ctx *gin.Context) {
 		idParam := ctx.Param("id")
@@ -134,6 +185,18 @@ func (h *TurnoHandler) Delete() gin.HandlerFunc {
 	}
 }
 
+// @Summary Create turno by paciente dni and dentista matricula
+// @Description Create a new turno in repository
+// @Tags Turnos
+// @Produce json
+// @Param token header string true "token"
+// @Param dni query int true "Paciente dni"
+// @Param matricula query string true "Dentista matricula"
+// @Param body body domain.TurnoForDNIAndLicense true "TurnoForDNIAndLicense"
+// @Success 201 {object} domain.TurnoWithIds
+// @Failure 400 {object} web.errorResponse
+// @Failure 404 {object} web.errorResponse
+// @Router /turnos/dniymatricula [post]
 func (h *TurnoHandler) PostByDNIAndLicense() gin.HandlerFunc {
 	return func(ctx *gin.Context) {
 		matriculaParam := ctx.Query("dni")
@@ -161,6 +224,15 @@ func (h *TurnoHandler) PostByDNIAndLicense() gin.HandlerFunc {
 	}
 }
 
+// @Summary Get turnos by dni
+// @Description Get turnos by paciente dni
+// @Tags Turnos
+// @Produce json
+// @Param dni query int true "Paciente dni"
+// @Success 200 {object} []domain.Turno
+// @Failure 400 {object} web.errorResponse
+// @Failure 404 {object} web.errorResponse
+// @Router /turnos [get]
 func (h *TurnoHandler) GetByDNI() gin.HandlerFunc {
 	return func(ctx *gin.Context) {
 		dniParam := ctx.Query("dni")

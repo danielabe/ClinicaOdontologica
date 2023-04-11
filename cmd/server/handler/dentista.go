@@ -22,6 +22,15 @@ func NewHandlerDentista(service dentista.IService) *DentistaHandler {
 	}
 }
 
+// @Summary Get dentista by id
+// @Description Get dentista by id
+// @Tags Dentistas
+// @Produce json
+// @Param id path int true "Dentista ID"
+// @Success 200 {object} domain.Dentista
+// @Failure 400 {object} web.errorResponse
+// @Failure 404 {object} web.errorResponse
+// @Router /dentistas/{id} [get]
 func (h *DentistaHandler) GetById() gin.HandlerFunc {
 	return func(ctx *gin.Context) {
 		idParam := ctx.Param("id")
@@ -42,6 +51,16 @@ func (h *DentistaHandler) GetById() gin.HandlerFunc {
 	}
 }
 
+// @Summary Create dentista
+// @Description Create a new dentista in repository
+// @Tags Dentistas
+// @Produce json
+// @Param token header string true "token"
+// @Param body body domain.Dentista true "Dentista"
+// @Success 201 {object} domain.Dentista
+// @Failure 400 {object} web.errorResponse
+// @Failure 404 {object} web.errorResponse
+// @Router /dentistas [post]
 func (h *DentistaHandler) Post() gin.HandlerFunc {
 	return func(ctx *gin.Context) {
 		var dentista domain.Dentista
@@ -60,6 +79,17 @@ func (h *DentistaHandler) Post() gin.HandlerFunc {
 	}
 }
 
+// @Summary Update dentista
+// @Description Update dentista in repository
+// @Tags Dentistas
+// @Produce json
+// @Param id path int true "Dentista ID"
+// @Param token header string true "token"
+// @Param body body domain.Dentista true "Dentista"
+// @Success 200 {object} domain.Dentista
+// @Failure 400 {object} web.errorResponse
+// @Failure 404 {object} web.errorResponse
+// @Router /dentistas/{id} [put]
 func (h *DentistaHandler) Put() gin.HandlerFunc {
 	return func(ctx *gin.Context) {
 		idParam := ctx.Param("id")
@@ -85,6 +115,17 @@ func (h *DentistaHandler) Put() gin.HandlerFunc {
 	}
 }
 
+// @Summary Modify dentista fields
+// @Description Modify dentista fields in repository
+// @Tags Dentistas
+// @Produce json
+// @Param id path int true "Dentista ID"
+// @Param token header string true "token"
+// @Param body body domain.RequestDentista true "RequestDentista"
+// @Success 200 {object} domain.Dentista
+// @Failure 400 {object} web.errorResponse
+// @Failure 404 {object} web.errorResponse
+// @Router /dentistas/{id} [patch]
 func (h *DentistaHandler) Patch() gin.HandlerFunc {
 	return func(ctx *gin.Context) {
 		var r domain.RequestDentista
@@ -113,6 +154,16 @@ func (h *DentistaHandler) Patch() gin.HandlerFunc {
 	}
 }
 
+// @Summary Delete dentista
+// @Description Delete dentista in repository
+// @Tags Dentistas
+// @Produce json
+// @Param id path int true "Dentista ID"
+// @Param token header string true "token"
+// @Success 204
+// @Failure 400 {object} web.errorResponse
+// @Failure 404 {object} web.errorResponse
+// @Router /dentistas/{id} [delete]
 func (h *DentistaHandler) Delete() gin.HandlerFunc {
 	return func(ctx *gin.Context) {
 		idParam := ctx.Param("id")

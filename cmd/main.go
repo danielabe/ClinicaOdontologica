@@ -17,11 +17,22 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/joho/godotenv"
 
-	/* "github.com/danielabe/ClinicaOdontologica/tree/main/cmd/docs" */
 	swaggerFiles "github.com/swaggo/files"
 	ginSwagger "github.com/swaggo/gin-swagger"
 )
 
+// @title Clínica Odontológica
+// @version 1.0
+// @description This API Handle Dentistas, Pacientes y Turnos.
+
+// @termsOfService https://developers.ctd.com.ar/es_ar/terminos-y-condiciones
+
+// @contact.name Daniela Berardi
+// @contact.email danielaberardi@live.com.ar
+// @contact.url https://github.com/danielabe
+
+// @license.name Apache 2.0
+// @license.url http://www.apache.org/licenses/LICENSE-2.0.html
 func main() {
 	if err := godotenv.Load("./.env"); err != nil {
 		panic("Error loading .env file: " + err.Error())

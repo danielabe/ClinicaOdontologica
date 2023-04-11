@@ -1,4 +1,738 @@
+definitions:
+  domain.Dentista:
+    properties:
+      apellido:
+        type: string
+      id:
+        type: integer
+      matricula:
+        type: string
+      nombre:
+        type: string
+    required:
+    - apellido
+    - matricula
+    - nombre
+    type: object
+  domain.DentistaInTurno:
+    properties:
+      apellido:
+        type: string
+      id:
+        type: integer
+      matricula:
+        type: string
+      nombre:
+        type: string
+    type: object
+  domain.Paciente:
+    properties:
+      apellido:
+        type: string
+      dni:
+        type: integer
+      domicilio:
+        type: string
+      fecha_alta:
+        type: string
+      id:
+        type: integer
+      nombre:
+        type: string
+    required:
+    - apellido
+    - dni
+    - domicilio
+    - fecha_alta
+    - nombre
+    type: object
+  domain.PacienteInTurno:
+    properties:
+      apellido:
+        type: string
+      dni:
+        type: integer
+      domicilio:
+        type: string
+      fecha_alta:
+        type: string
+      id:
+        type: integer
+      nombre:
+        type: string
+    type: object
+  domain.RequestDentista:
+    properties:
+      apellido:
+        type: string
+      matricula:
+        type: string
+      nombre:
+        type: string
+    type: object
+  domain.RequestPaciente:
+    properties:
+      apellido:
+        type: string
+      dni:
+        type: integer
+      domicilio:
+        type: string
+      fecha_alta:
+        type: string
+      nombre:
+        type: string
+    type: object
+  domain.RequestTurno:
+    properties:
+      dentista_id:
+        type: integer
+      descripcion:
+        type: string
+      fecha:
+        type: string
+      hora:
+        type: string
+      paciente_id:
+        type: integer
+    type: object
+  domain.Turno:
+    properties:
+      dentista:
+        $ref: '#/definitions/domain.DentistaInTurno'
+      descripcion:
+        type: string
+      fecha:
+        type: string
+      hora:
+        type: string
+      id:
+        type: integer
+      paciente:
+        $ref: '#/definitions/domain.PacienteInTurno'
+    required:
+    - dentista
+    - descripcion
+    - fecha
+    - hora
+    - paciente
+    type: object
+  domain.TurnoForDNIAndLicense:
+    properties:
+      descripcion:
+        type: string
+      fecha:
+        type: string
+      hora:
+        type: string
+      id:
+        type: integer
+    required:
+    - descripcion
+    - fecha
+    - hora
+    type: object
+  domain.TurnoWithIds:
+    properties:
+      dentista_id:
+        type: integer
+      descripcion:
+        type: string
+      fecha:
+        type: string
+      hora:
+        type: string
+      id:
+        type: integer
+      paciente_id:
+        type: integer
+    required:
+    - dentista_id
+    - descripcion
+    - fecha
+    - hora
+    - paciente_id
+    type: object
+  web.errorResponse:
+    properties:
+      code:
+        type: string
+      message:
+        type: string
+      status:
+        type: integer
+    type: object
 info:
-  contact: {}
-paths: {}
+  contact:
+    email: danielaberardi@live.com.ar
+    name: Daniela Berardi
+    url: https://github.com/danielabe
+  description: This API Handle Dentistas, Pacientes y Turnos.
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: https://developers.ctd.com.ar/es_ar/terminos-y-condiciones
+  title: Clínica Odontológica
+  version: "1.0"
+paths:
+  /dentistas:
+    post:
+      description: Create a new dentista in repository
+      parameters:
+      - description: token
+        in: header
+        name: token
+        required: true
+        type: string
+      - description: Dentista
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/domain.Dentista'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/domain.Dentista'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/web.errorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/web.errorResponse'
+      summary: Create dentista
+      tags:
+      - Dentistas
+  /dentistas/{id}:
+    delete:
+      description: Delete dentista in repository
+      parameters:
+      - description: Dentista ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: token
+        in: header
+        name: token
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "204":
+          description: No Content
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/web.errorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/web.errorResponse'
+      summary: Delete dentista
+      tags:
+      - Dentistas
+    get:
+      description: Get dentista by id
+      parameters:
+      - description: Dentista ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/domain.Dentista'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/web.errorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/web.errorResponse'
+      summary: Get dentista by id
+      tags:
+      - Dentistas
+    patch:
+      description: Modify dentista fields in repository
+      parameters:
+      - description: Dentista ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: token
+        in: header
+        name: token
+        required: true
+        type: string
+      - description: RequestDentista
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/domain.RequestDentista'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/domain.Dentista'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/web.errorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/web.errorResponse'
+      summary: Modify dentista fields
+      tags:
+      - Dentistas
+    put:
+      description: Update dentista in repository
+      parameters:
+      - description: Dentista ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: token
+        in: header
+        name: token
+        required: true
+        type: string
+      - description: Dentista
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/domain.Dentista'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/domain.Dentista'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/web.errorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/web.errorResponse'
+      summary: Update dentista
+      tags:
+      - Dentistas
+  /pacientes:
+    post:
+      description: Create a new paciente in repository
+      parameters:
+      - description: token
+        in: header
+        name: token
+        required: true
+        type: string
+      - description: Paciente
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/domain.Paciente'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/domain.Paciente'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/web.errorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/web.errorResponse'
+      summary: Create paciente
+      tags:
+      - Pacientes
+  /pacientes/{id}:
+    delete:
+      description: Delete paciente in repository
+      parameters:
+      - description: Paciente ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: token
+        in: header
+        name: token
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "204":
+          description: No Content
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/web.errorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/web.errorResponse'
+      summary: Delete paciente
+      tags:
+      - Pacientes
+    get:
+      description: Get paciente by id
+      parameters:
+      - description: Paciente ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/domain.Paciente'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/web.errorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/web.errorResponse'
+      summary: Get paciente by id
+      tags:
+      - Pacientes
+    patch:
+      description: Modify paciente fields in repository
+      parameters:
+      - description: Paciente ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: token
+        in: header
+        name: token
+        required: true
+        type: string
+      - description: RequestPaciente
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/domain.RequestPaciente'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/domain.Paciente'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/web.errorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/web.errorResponse'
+      summary: Modify paciente fields
+      tags:
+      - Pacientes
+    put:
+      description: Update paciente in repository
+      parameters:
+      - description: Paciente ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: token
+        in: header
+        name: token
+        required: true
+        type: string
+      - description: Paciente
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/domain.Paciente'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/domain.Paciente'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/web.errorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/web.errorResponse'
+      summary: Update paciente
+      tags:
+      - Pacientes
+  /turnos:
+    get:
+      description: Get turnos by paciente dni
+      parameters:
+      - description: Paciente dni
+        in: query
+        name: dni
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/domain.Turno'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/web.errorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/web.errorResponse'
+      summary: Get turnos by dni
+      tags:
+      - Turnos
+    post:
+      description: Create a new turno in repository
+      parameters:
+      - description: token
+        in: header
+        name: token
+        required: true
+        type: string
+      - description: TurnoWithIds
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/domain.TurnoWithIds'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/domain.TurnoWithIds'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/web.errorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/web.errorResponse'
+      summary: Create turno
+      tags:
+      - Turnos
+  /turnos/{id}:
+    delete:
+      description: Delete turno in repository
+      parameters:
+      - description: Turno ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: token
+        in: header
+        name: token
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "204":
+          description: No Content
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/web.errorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/web.errorResponse'
+      summary: Delete turno
+      tags:
+      - Turnos
+    get:
+      description: Get turno by id
+      parameters:
+      - description: Turno ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/domain.Turno'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/web.errorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/web.errorResponse'
+      summary: Get turno by id
+      tags:
+      - Turnos
+    patch:
+      description: Modify turno fields in repository
+      parameters:
+      - description: Turno ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: token
+        in: header
+        name: token
+        required: true
+        type: string
+      - description: RequestTurno
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/domain.RequestTurno'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/domain.TurnoWithIds'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/web.errorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/web.errorResponse'
+      summary: Modify turno fields
+      tags:
+      - Turnos
+    put:
+      description: Update turno in repository
+      parameters:
+      - description: Turno ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: token
+        in: header
+        name: token
+        required: true
+        type: string
+      - description: TurnoWithIds
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/domain.TurnoWithIds'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/domain.TurnoWithIds'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/web.errorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/web.errorResponse'
+      summary: Update turno
+      tags:
+      - Turnos
+  /turnos/dniymatricula:
+    post:
+      description: Create a new turno in repository
+      parameters:
+      - description: token
+        in: header
+        name: token
+        required: true
+        type: string
+      - description: Paciente dni
+        in: query
+        name: dni
+        required: true
+        type: integer
+      - description: Dentista matricula
+        in: query
+        name: matricula
+        required: true
+        type: string
+      - description: TurnoForDNIAndLicense
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/domain.TurnoForDNIAndLicense'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/domain.TurnoWithIds'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/web.errorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/web.errorResponse'
+      summary: Create turno by paciente dni and dentista matricula
+      tags:
+      - Turnos
 swagger: "2.0"
